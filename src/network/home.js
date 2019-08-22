@@ -11,3 +11,9 @@ export function getRecommend(){
     url: '/homeRecommend.php',
   });
 }
+
+export function getGoods(){
+  return request({
+    url: '/homeGoods.php',
+  });
+}

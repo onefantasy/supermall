@@ -34,6 +34,7 @@
         startX : 0,
         endX : 0,
         current: 0,
+        timer: null,
       };
     },
     methods: {
@@ -105,11 +106,14 @@
         this.nextChange();
       }*/
       let arr = this.$refs.index;
-      this.order();
+      this.order('next');
       arr[this.current].$el.style.zIndex = 2;
-      setInterval(()=>{
+      this.timer = setInterval(()=>{
         this.nextChange();
       },3000);
+    },
+    beforeDestroy(){
+      clearInterval(this.timer)
     },
     components: {
       SwiperItem,

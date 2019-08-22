@@ -9,7 +9,6 @@ export function request(config){
 
   // 2. 设置请求拦截器
   instance.interceptors.request.use(config=>{
-    console.log(config);
     // 拦截之后记得返回，不然无法进行下一步
     return config;
   },error => {
@@ -18,8 +17,6 @@ export function request(config){
   instance.interceptors.response.use(res =>{
     // 拦截之后记得需要返回
     // 这里只返回res的data
-    console.log(typeof(res.data));
-    console.log(res.data);
     return typeof(res.data) === 'string' ? JSON.parse(res.data):res.data;
   },err =>{
 
