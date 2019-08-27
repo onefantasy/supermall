@@ -24,6 +24,7 @@
   .back-top-box img{
     width: 40px;
     height: 40px;
+    border: 3px solid #000;
     border-radius: 50%;
   }
 </style>

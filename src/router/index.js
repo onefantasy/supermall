@@ -9,6 +9,14 @@ const home = () => import('views/home/home')
 const cart = () => import('views/cart/cart')
 const category = () => import('views/category/category')
 const profile = () => import('views/profile/profile')
+const detail = () => import('views/detail/detail')
+
+// 解决错误：Uncaught (in promise) NavigationDuplicated {_name: "NavigationDuplicated", name: "NavigationDuplicated"}
+// 原因，点击后跳转到与当前页面相同的路由
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 // 2. 实例化
 const router = new Router({
@@ -32,6 +40,10 @@ const router = new Router({
     {
       path: '/my',
       component: profile
+    },
+    {
+      path: '/detail/:id',
+      component: detail
     },
   ],
   mode: 'history'

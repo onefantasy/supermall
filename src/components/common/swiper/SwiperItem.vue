@@ -2,8 +2,7 @@
   <!--:style="'left:'+leftNum"-->
     <div class="swiper-item" :style="'left:'+leftNum">
       <a href="#">
-        <!--<div :style="'background:url('+item+')'"></div>-->
-        <img :src="item" alt="">
+        <img :src="item" alt="" @load="swiperImgLoad">
       </a>
     </div>
 </template>
@@ -18,11 +17,16 @@
         },
         index:{
           type: Number,
-        }
+        },
+        postImgLoadItem:{
+          type: Boolean,
+          default: true,
+        },
       },
       data() {
         return {
-          indexNum:this.index
+          indexNum:this.index,
+          emitImgLoad: 1,
         };
       },
       computed:{
@@ -30,7 +34,13 @@
           return (this.indexNum * 100) + '%';
         },
       },
-      methods: {},
+      methods: {
+        // 用于计算tabControl的吸顶效果的距离
+        swiperImgLoad(){
+          if(this.postImgLoadItem)
+            this.$bus.$emit('swiperImgLoad');
+        },
+      },
       components: {},
     }
 </script>

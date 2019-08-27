@@ -1,6 +1,6 @@
 <template>
     <div class="goods-box">
-      <GoodsListItem v-for="item in goods[currentGoods]" :item="item" class="goods-item" @imgComplete="imgComplete"></GoodsListItem>
+      <GoodsListItem v-for="item in goods[currentGoods]" :item="item" class="goods-item" @img-load="itemImgLoad"></GoodsListItem>
     </div>
 </template>
 
@@ -21,16 +21,16 @@
         return {};
       },
       methods: {
-        // 用户告诉父组件图片加载完成
-        imgComplete(){
-          this.$emit('goodsComplete');
-        }
+        itemImgLoad(){
+          this.$emit('item-img-load');
+        },
       },
       components: {
         GoodsListItem,
       },
       mounted(){
         // this.$emit('goodsComplete');
+
       },
       computed:{
         goodsKeys(){

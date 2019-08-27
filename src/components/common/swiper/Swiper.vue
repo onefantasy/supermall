@@ -2,7 +2,7 @@
     <div class="swiper-box" :style="'margin-top:'+top" @touchstart="touchStart" @touchend="touchEnd">
       <div class="swiper-img">
         <div v-for="(item,index) in banners" class="bannersImg">
-          <SwiperItem :item="item" :index="index" ref="index"></SwiperItem>
+          <SwiperItem :item="item" :index="index" ref="index" :postImgLoadItem="postImgLoad"></SwiperItem>
         </div>
       </div>
       <div class="dots">
@@ -26,8 +26,12 @@
       // 轮播图距离顶部的距离
       top: {
         type: String,
-        default: 0,
-      }
+        default: '0px',
+      },
+      postImgLoad:{
+        type: Boolean,
+        default: true,
+      },
     },
     data() {
       return {

@@ -1,6 +1,6 @@
 <template>
     <div class="goods-item-box">
-      <img :src="item.img" alt="" @load="loadimg">
+      <img :src="item.img" alt="" @load="loadimg" @click="goDetail">
       <div>
         <p class="goods-item-name">{{item.name}}</p>
         <p class="goods-item-price">{{item.price}}</p>
@@ -28,8 +28,15 @@
       methods: {
         // 图片加载完成事件
         loadimg(){
-          this.$emit('imgComplete');
-        }
+          // 往总线传递信号，通知home.vue图片已经加载完成
+          this.$bus.$emit('imgLoad');
+          // 往父组件发射信号
+          this.$emit('img-load');
+        },
+        // 跳转到详情页面
+        goDetail(){
+          this.$router.push('/detail/'+ this.item.id);
+        },
       },
       components: {},
     }

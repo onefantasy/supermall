@@ -10,7 +10,10 @@ module.exports = {
         'views': '@/views'
       },
     }
-  }
+  },
+  devServer: {
+    port: 8000, // 端口
+  },
 };
 
 

@@ -47,6 +47,10 @@
       // 利用better-scroll自带的返回顶部的函数封装一个返回顶部的函数
       goTop(x,y,time=500){
         this.scroll.scrollTo(x,y,time);
+      },
+      // 刷新页面可以滚动的长度
+      refresh(){
+        this.scroll.refresh();
       }
     },
     components: {},
