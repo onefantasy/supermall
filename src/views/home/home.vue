@@ -132,7 +132,7 @@
         // 计算tabControl距离顶部的高度，此处只轮播图图片的影响
         this.$bus.$on('swiperImgLoad',()=>{
           // console.log(this.$refs.tabControl.$el.offsetTop);
-          this.tabControlTop = this.$refs.tabControl2.$el.offsetTop+42;
+          this.tabControlTop = this.$refs.tabControl2.$el.offsetTop + this.$refs.tabControl2.$el.offsetHeight;
         });
       },
       activated() {

@@ -22,9 +22,6 @@
     <!--回到顶部-->
     <BackTop @click.native="backTop" v-show="isShowBack"></BackTop>
 
-    <!--添加购物车成功的提示-->
-    <addCartSuccess :is-success="addCartStatus" :show-tip="clickAddCart"></addCartSuccess>
-
     <!--底部工具栏-->
     <detailBottomNavbar @addCart="addGoodToCart"></detailBottomNavbar>
   </div>
@@ -39,7 +36,6 @@
   import userComment from './children/userComment'
   import detailRecommend from './children/detailRecommend'
   import detailBottomNavbar from './children/detailBottomNavbar'
-  import addCartSuccess from './children/addCartSuccess'
 
   import {getDetail,getGoods} from 'network/detail'
 
@@ -47,6 +43,8 @@
   import Scroll from 'components/common/scroll/Scroll'
 
   import BackTop from 'components/content/backTop/BackTop'
+
+  import { mapActions } from 'vuex'
 
   export default {
     name: "detail",
@@ -57,8 +55,6 @@
         goods:{},
         partOffsetTop:null,
         positionY: 0,
-        clickAddCart: false,
-        addCartStatus: false,
       };
     },
     created(){
@@ -70,7 +66,16 @@
     mounted(){
 
     },
+    computed:{
+      isShowBack(){
+        return (-this.positionY) > 500;
+      },
+    },
     methods: {
+      ...mapActions([
+        'addToCart'
+      ]),
+
       infoImgLoad(){
         // 刷新可滚动的长度
         this.$refs.scroll.refresh();
@@ -105,7 +110,7 @@
         let y = Math.abs(p.y) ;
         let index = -1;
         for(let i = 0; i < this.partOffsetTop.length; i++){
-         if(this.partOffsetTop[i] < y) index++;
+         if(this.partOffsetTop[i] <= y) index++;
         }
         this.$refs.navbar.current = index;
       },
@@ -119,14 +124,10 @@
         goodInfo.desc = this.data.info.desc;
         goodInfo.price = this.data.info.newPrice;
         goodInfo.count = 1;
-        this.$store.commit('addToCart',goodInfo);
-
-        this.clickAddCart = true;
-        this.addCartStatus = true;
-        setTimeout(()=>{
-          this.clickAddCart = false;
-          this.addCartStatus =false;
-        },2000);
+        goodInfo.checked = true;
+        this.addToCart(goodInfo).then(()=>{
+          this.$toast.toastShow('添加成功!',1500);
+        });
       },
     },
     components: {
@@ -141,13 +142,8 @@
       detailRecommend,
       detailBottomNavbar,
       BackTop,
-      addCartSuccess,
     },
-    computed:{
-      isShowBack(){
-        return (-this.positionY) > 500;
-      },
-    },
+
   }
 </script>
 

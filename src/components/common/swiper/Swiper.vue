@@ -135,7 +135,9 @@
   .swiper-box{
     width: 100%;
     height: 200px;
-    background-color: pink;
   }
 
+  .bannersImg{
+    overflow: hidden;
+  }
 </style>

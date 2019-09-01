@@ -53,8 +53,8 @@
     /*width: 100%;*/
   }
   .swiper-item img{
-    max-width: 100%;
-    height: 200px;
+    width: 100%;
+    max-height: 200px;
     vertical-align: middle;
   }
 </style>

@@ -1,6 +1,8 @@
 <template>
     <div class="goods-item-box">
-      <img :src="item.img" alt="" @load="loadimg" @click="goDetail">
+      <!--图片懒加载处理-->
+      <img v-lazy="item.img" alt="" @load="loadimg" @click="goDetail">
+      <!--<img :src="item.img" alt="" @load="loadimg" @click="goDetail">-->
       <div>
         <p class="goods-item-name">{{item.name}}</p>
         <p class="goods-item-price">{{item.price}}</p>

@@ -12,7 +12,7 @@ module.exports = {
     }
   },
   devServer: {
-    port: 8000, // 端口
+    port: 8081, // 端口
   },
 };
 
