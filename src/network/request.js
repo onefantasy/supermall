@@ -4,7 +4,7 @@ export function request(config){
   // 1. 创建axios实例
   const instance = axios.create({
     // 设置全局配置
-    baseURL: 'http://192.168.1.106/22',
+    baseURL: config.baseURL || 'http://192.168.31.1/22',
   });
 
   // 2. 设置请求拦截器
