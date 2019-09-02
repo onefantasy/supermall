@@ -10,6 +10,7 @@ Vue.use(Vuex);
 
 const state = {
   cart:[],
+  pInfo:{},
 };
 
 // 2. 实例化对象
