@@ -20,10 +20,10 @@
           <span class="low" :class="{height:shop.score[0] === 5}">{{shop.score[0]}}&nbsp{{shop.score[0] === 5 ? "&nbsp&nbsp&nbsp高":"低"}}</span>
         </div>
         <div class="score-item">价格合理&nbsp
-          <span class="low" :class="{height:shop.score[1] === 5}">{{shop.score[1]}}&nbsp{{shop.score[1] === 5 ? "高":"低"}}</span>
+          <span class="low" :class="{height:shop.score[1] === 5}">{{shop.score[1]}}&nbsp{{shop.score[1] === 5 ? "&nbsp&nbsp&nbsp高":"低"}}</span>
         </div>
         <div class="score-item">质量满意&nbsp
-          <span class="low" :class="{height:shop.score[2] === 5}">{{shop.score[2]}}&nbsp{{shop.score[2] === 5 ? "高":"低"}}</span>
+          <span class="low" :class="{height:shop.score[2] === 5}">{{shop.score[2]}}&nbsp{{shop.score[2] === 5 ? "&nbsp&nbsp&nbsp高":"低"}}</span>
         </div>
       </div>
     </div>
