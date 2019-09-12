@@ -1,0 +1,20 @@
+<svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <defs>
+  <linearGradient y2="0" x2="1" y1="0" x1="0" spreadMethod="pad" id="svg_3">
+   <stop offset="0" stop-color="rgb(249, 249, 174)"/>
+   <stop offset="1" stop-color="rgb(6, 6, 81)"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect height="402" width="582" y="-1" x="-1" fill="#fff" id="canvas_background"/>
+  <g y="0" x="0" height="100%" width="100%" display="none" overflow="visible" id="canvasGrid">
+   <rect height="100%" width="100%" y="0" x="0" stroke-width="0" fill="url(#gridpattern)"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path d="m280.116669,45.890404c-89.197922,0 -161.499611,69.172005 -161.499611,154.50013c0,85.332306 72.301689,154.499878 161.499611,154.499878c89.193787,0 161.500366,-69.167572 161.500366,-154.499878c0,-85.328125 -72.30658,-154.50013 -161.500366,-154.50013zm14.75528,243.485329l-30.078491,0l0,-27.594727l30.078491,0l0,27.594727zm0,-57.059235l0,9.119843l-30.078491,0l0,-11.236847c0,-33.908829 40.336792,-39.289612 40.336792,-63.390259c0,-10.988785 -10.270844,-19.406906 -23.71637,-19.406906c-13.932922,0 -26.153702,9.821091 -26.153702,9.821091l-17.125061,-20.356613c0,0 16.879227,-16.840805 45.970169,-16.840805c27.633789,0 53.290558,16.370499 53.290558,43.969543c0.013641,38.608749 -42.523895,43.061249 -42.523895,68.320953z" stroke-width="1.5" stroke="url(#svg_3)" fill="#000000" id="svg_2"/>
+ </g>
+</svg>
