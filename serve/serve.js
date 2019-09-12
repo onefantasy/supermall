@@ -9,15 +9,36 @@ let url = require('url');
 
 // 创建服务器，回调函数的第一个参数为请求的内容，第二个参数为响应的结果
 let server = http.createServer(function(request,response){
-	// 打印地址
-	// let requestUrl = request.url;
-	
+	// 处理预请求OPTIONS
+	if(request.method === 'OPTIONS'){
+		response.writeHead(200,{
+			"Access-Control-Allow-Origin":"*",
+			"Access-Control-Allow-Methods":"PUT,POST,GET,OPTIONS",
+			"Access-Control-Allow-Headers": "*"  
+		});
+		response.end();
+	}
+
 	// 获取路径名
 	let requestUrl = url.parse(request.url);
-	// 获取参数
+	// 获取get参数
 	let param = url.parse(request.url,true).query;
 
 	console.log(requestUrl.pathname);
+
+	// 接收post参数
+	let p = new Promise(function(resolve,reject){
+		// 接收post参数
+		let str = '';
+		request.on('data',(data)=>{
+			str += data;
+		});
+		request.on('end',()=>{
+			console.log(str);
+			// 传值给then
+			resolve(str);
+		});
+	});
 
 	switch(requestUrl.pathname){
 		case '/categoryData':
@@ -34,6 +55,20 @@ let server = http.createServer(function(request,response){
 			break;
 		case '/detailInfo':
 			getData(request,response,'detailInfo.json',param.id);
+			break;
+		case '/pInfo':
+			getData(request,response,'pInfo.json',param.id);
+			break;
+		case '/proving':
+			// 调用验证函数
+			p.then((str)=>{
+				str = JSON.parse(str);
+				console.log(typeof str);
+				console.log(str);
+				proving(response,str.user,str.password);
+			}).catch(err => {
+				console.log(err);
+			});
 			break;
 		default : 
 			response.writeHead(404,'not found',{
@@ -55,29 +90,52 @@ function getData(request,response,way,id=-1){
 		'Content-Type':'text/json;charset=utf-8',
 		"Access-Control-Allow-Origin":"*"
 	});
-	/*let str = '';
-	let dataPath = path.join(__dirname,'data/categoryData.json');
-	let steam = fs.createReadStream(dataPath,);
-	steam.on('data',(chunk)=>{
-		str += chunk;
-	})
-
-	steam.on('end',()=>{
-
-		str = JSON.parse(str).data;
-
-		str = JSON.stringify(str);
-	
-		response.write(str);
-	
-		response.end();
-	})*/
 	let str = require('./data/' + way);
 	str = str.data;
-	if(id !== -1) {str = str[id-1];}
+	
+	if(id !== -1){
+		for(let item of str){
+			if(item.id == id){
+				str = item;
+				break;
+			}
+		}
+	}
+
 	str = JSON.stringify(str);
 	
 	response.write(str);
 
 	response.end();
+}
+
+
+// 验证账号密码函数
+function proving(response,user,password){
+	response.writeHead(200,{
+		'Content-Type':'text/json;charset=utf-8',
+		"Access-Control-Allow-Origin":"*"
+	});
+
+	let arr = require('./data/userProving.json').data;
+
+	let str = {};
+
+	let i = 0;
+	arr.forEach(item => {
+		if(item.user === user)
+			if(item.password === password){
+				str.login = true;
+				console.log(i++,item);
+			}
+	});
+
+	if(!str.login) str.login = false;
+
+	str = JSON.stringify(str);
+
+	response.write(str);
+
+	response.end();
+
 }
