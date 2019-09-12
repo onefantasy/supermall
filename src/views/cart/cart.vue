@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cart-box">
     <!--导航栏-->
     <NavBar class="cartNavBar">
       <div slot="center">购物车({{cartLength}})</div>
@@ -47,6 +47,9 @@
 </script>
 
 <style scoped>
+  .cart-box{
+    font-size: 15px;
+  }
   .cartNavBar{
     background-color: var(--color-tint);
     color: #fff;

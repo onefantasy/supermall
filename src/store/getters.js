@@ -5,4 +5,7 @@ export default {
   cartList(state){
     return state.cart;
   },
+  pInfoData(state){
+    return state.pInfo
+  },
 };

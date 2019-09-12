@@ -44,7 +44,7 @@
 
   import BackTop from 'components/content/backTop/BackTop'
 
-  import { mapActions } from 'vuex'
+  import { mapActions,mapGetters } from 'vuex'
 
   export default {
     name: "detail",
@@ -70,6 +70,10 @@
       isShowBack(){
         return (-this.positionY) > 500;
       },
+      // 获取用户登录信息
+      ...mapGetters([
+        'pInfoData'
+      ]),
     },
     methods: {
       ...mapActions([
@@ -117,6 +121,12 @@
 
       // 添加到购物车
       addGoodToCart(){
+        // 如果用户尚未登录，禁止该操作
+        if(!this.pInfoData.isLogin){
+          this.$toast.toastShow('请先登录!');
+          return;
+        }
+        // 用户已经登录，执行下面的操作
         const goodInfo = {};
         goodInfo.img = this.data.imgInfo[0];
         goodInfo.title = this.data.info.title;

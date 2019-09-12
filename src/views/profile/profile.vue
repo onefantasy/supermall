@@ -7,8 +7,8 @@
 
     <!--主要部分的内容-->
     <Scroll class="content">
-      <personInfo></personInfo>
-      <capital></capital>
+      <personInfo :p-info-data="pInfoData"></personInfo>
+      <capital :p-info-data="pInfoData"></capital>
       <capitalPart></capitalPart>
       <capitalPart :data="capitalPartData"></capitalPart>
     </Scroll>
@@ -24,15 +24,22 @@
   import personInfo from './children/personInfo'
   import capital from './children/capital'
 
+  import { mapGetters } from 'vuex'
+
   export default {
     name: "profile",
     data() {
       return {
         capitalPartData:[
-          {img:"part.jpg",word:"我的购物车"},
+          {img:"part.jpg",word:"我的购物车",way:"/car"},
           {img:"part.jpg",word:"下载购物APP"}
         ],
       };
+    },
+    computed:{
+      ...mapGetters([
+        'pInfoData'
+      ]),
     },
     methods: {},
     components: {
@@ -49,12 +56,15 @@
 
   .proflie-box{
     height: 100vh;
+    font-size: 15px;
   }
 
   .proflie-title{
     background-color: var(--color-tint);
     color: #fff;
     font-weight: 700;
+    position: relative;
+    z-index: 10;
   }
 
   .content{

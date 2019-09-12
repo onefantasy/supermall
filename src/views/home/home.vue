@@ -152,6 +152,7 @@
     /* vh : view height*/
     height: 100vh;
     background-color: #fff;
+    font-size: 15px;
   }
   .home-bar{
     background-color: var(--color-tint);

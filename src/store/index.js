@@ -10,7 +10,28 @@ Vue.use(Vuex);
 
 const state = {
   cart:[],
-  pInfo:{},
+  pInfo:{
+    id: '',
+    isLogin: false,
+    money: 0,
+    discount: 0,
+    point: 0,
+    name: '',
+    phone: '',
+    img: '',
+    address: ''
+  },
+  defaultPInfo:{
+    id: '',
+    isLogin: false,
+    money: 0,
+    discount: 0,
+    point: 0,
+    name: '',
+    phone: '',
+    img: '',
+    address: ''
+  }
 };
 
 // 2. 实例化对象

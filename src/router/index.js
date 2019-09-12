@@ -10,6 +10,9 @@ const cart = () => import('views/cart/cart')
 const category = () => import('views/category/category')
 const profile = () => import('views/profile/profile')
 const detail = () => import('views/detail/detail')
+const login = () => import('views/login/login')
+const pDetail =() => import('views/pDetail/pDetail')
+const register = () => import('views/register/register')
 
 // 解决错误：Uncaught (in promise) NavigationDuplicated {_name: "NavigationDuplicated", name: "NavigationDuplicated"}
 // 原因，点击后跳转到与当前页面相同的路由
@@ -45,6 +48,18 @@ const router = new Router({
       path: '/detail/:id',
       component: detail
     },
+    {
+      path: '/login',
+      component: login,
+    },
+    {
+      path: '/pDetail',
+      component: pDetail,
+    },
+    {
+      path: '/register',
+      component: register
+    }
   ],
   mode: 'history'
 })

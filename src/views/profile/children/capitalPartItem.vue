@@ -4,7 +4,7 @@
       <div class="part-item-img">
         <img :src="item.img" alt="">
       </div>
-      <div class="part-item-word">{{item.word}}</div>
+      <div class="part-item-word" @click="goOther(item.way)">{{item.word}}</div>
     </div>
   </div>
 </template>
@@ -33,15 +33,22 @@
         let arr = [];
         this.data.forEach(item => {
           arr.push({
-            // img: require('assets/img/category/'+item.img),
-            img: require('assets/img/category/'+item.img),
-            word: item.word
+            // img: require('assets/img/profile/'+item.img),
+            img: require('assets/img/profile/'+item.img),
+            word: item.word,
+            way: item.way
           });
         });
         return arr;
       },
     },
-    methods: {},
+    methods: {
+      // 根据传入的参数进行跳转
+      goOther(way){
+        if(!way) return;
+        this.$router.push(way);
+      },
+    },
     components: {},
   }
 </script>

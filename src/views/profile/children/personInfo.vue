@@ -1,32 +1,53 @@
 <template>
   <div class="personInfo-box">
     <div>
-      <img v-if="pInfo.img" :src="pInfo.img" alt="">
-      <img v-else src="~assets/img/category/touxiang.jpg" alt="">
+      <img v-if="pInfoData.img && pInfoData.isLogin" :src="pInfoData.img" alt="">
+      <img v-else src="~assets/img/profile/touxiang.jpg" alt="">
     </div>
     <div>
-      <div v-if="pInfo.name">登录/注册</div>
-      <div v-else>登录/注册</div>
-      <div v-if="pInfo.phone">暂无绑定手机号</div>
+      <div v-if="pInfoData.isLogin" @click="login()">{{pInfoData.name || pInfoData.id}}</div>
+      <div v-else @click="login()">登录/注册</div>
+      <div v-if="pInfoData.isLogin && pInfoData.phone">{{pInfoData.phone}}</div>
       <div v-else>暂无绑定手机号</div>
     </div>
-    <div> > </div>
+    <div @click="goInfoPage()"> > </div>
   </div>
 </template>
 
 <script>
   export default {
     name: "personInfo",
-    props:{},
+    props:{
+      pInfoData:{
+        type: Object,
+        default(){
+          return {};
+        }
+      },
+    },
     data() {
       return {};
     },
     computed:{
-      pInfo(){
-        return this.$store.state.pInfo;
-      }
+
     },
-    methods: {},
+    methods: {
+      // 点击进入登录页面
+      login(){
+        this.$router.push('/login');
+      },
+
+      // 点击跳转到个人信息页面
+      goInfoPage(){
+        // 如果没有登录，则该按键不会有任何效果
+        if(!this.pInfoData.isLogin){
+          this.$toast.toastShow('请先登录!');
+          return;
+        }
+        // 若果已经登录，进行跳转
+        this.$router.push('/pDetail');
+      },
+    },
     components: {},
   }
 </script>

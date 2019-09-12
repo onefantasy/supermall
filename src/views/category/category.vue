@@ -64,6 +64,7 @@
   .wrapper{
     padding: 0 0 49px 0;
     height: 100vh;
+    font-size: 15px;
   }
 
   .navbar{

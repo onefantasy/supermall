@@ -49,5 +49,6 @@
     color: #fff;
     padding: 8px 10px;
     z-index: 1000;
+    text-align: center;
   }
 </style>
